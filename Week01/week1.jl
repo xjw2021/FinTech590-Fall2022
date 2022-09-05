@@ -85,8 +85,8 @@ println("Kurtosis diff = $(k - kurtosis(sim))")
 
 
 # Study the limiting expected values from the estimators
-sample_size = 100
-samples = 1_000_000
+sample_size = 100000
+samples = 100
 
 
 means = Vector{Float64}(undef,samples)
@@ -107,10 +107,10 @@ println("Kurtosis versus Expected $(mean(kurts) - kurtosis(d))")
 
 # Test the kurtosis function for bias in small sample sizes
 d = Normal(0,1)
-samples = 100
+samples = 1000
 kurts = Vector{Float64}(undef,samples)
 Threads.@threads for i in 1:samples
-    kurts[i] = kurtosis(rand(d,100_000))
+    kurts[i] = kurtosis(rand(d,100))
 end
 
 #summary statistics
